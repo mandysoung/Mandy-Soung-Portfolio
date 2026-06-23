@@ -913,17 +913,18 @@
 
   lightboxClose.addEventListener('click', closeLightbox);
 
-  // FIX: Escape key closes lightbox
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
   });
+
   document.querySelectorAll('.accordion-toggle').forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    const content = toggle.nextElementSibling;
-    content.classList.toggle('open');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      const block = toggle.closest('.gallery-block');
+      const content = block.querySelector('.accordion-content');
+      content.classList.toggle('open');
+    });
   });
-});
 </script>
 
 </body>
